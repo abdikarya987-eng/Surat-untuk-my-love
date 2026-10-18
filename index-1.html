@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7d9f4">
+  <title>To My Nana 🌸</title>
+  <style>
+    :root {
+      --ink: #55385f;
+      --muted: #80688b;
+      --pink: #f5a9d2;
+      --pink-deep: #df79b5;
+      --lavender: #c8b5f5;
+      --cream: #fff9ff;
+      --glass: rgba(255,255,255,.76);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(255,255,255,.95) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 22%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+        linear-gradient(145deg, #ffe4f1 0%, #f0e4ff 48%, #e4f3ff 100%);
+      background-size: 90px 90px, 120px 120px, auto;
+    }
+    button { font: inherit; }
+    .page {
+      width: min(100% - 28px, 760px);
+      margin: 0 auto;
+      padding: 28px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .topline {
+      text-align: center;
+      font-size: .75rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #9878a5;
+      margin: 4px 0 18px;
+    }
+    .hero, .panel {
+      border: 1px solid rgba(255,255,255,.9);
+      background: var(--glass);
+      box-shadow: 0 18px 55px rgba(121, 79, 151, .13);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+    }
+    .hero {
+      text-align: center;
+      padding: 30px 22px 26px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before, .hero::after {
+      content: "✦";
+      position: absolute;
+      color: #e8a7d1;
+      font-size: 1.5rem;
+      animation: twinkle 2.5s ease-in-out infinite;
+    }
+    .hero::before { top: 22px; left: 24px; }
+    .hero::after { right: 25px; top: 52px; animation-delay: .8s; }
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid #f4c6e4;
+      background: #fff5fb;
+      border-radius: 99px;
+      padding: 7px 13px;
+      font-size: .78rem;
+      color: #a35f91;
+    }
+    h1 {
+      margin: 15px 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      line-height: 1.12;
+      font-size: clamp(2.15rem, 9vw, 4rem);
+      letter-spacing: -.04em;
+      color: #825a9b;
+    }
+    h1 span { color: #df79b5; }
+    .hero p {
+      margin: 10px auto;
+      max-width: 520px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+    .mascot {
+      font-size: clamp(3.3rem, 14vw, 5.2rem);
+      display: inline-block;
+      filter: drop-shadow(0 8px 8px rgba(170,111,164,.15));
+      animation: floaty 3s ease-in-out infinite;
+      margin-top: 8px;
+    }
+    .japanese { color: #aa7ba8; font-size: .9rem; }
+    .section-title {
+      text-align: center;
+      margin: 34px 0 8px;
+      font-family: Georgia, serif;
+      font-size: clamp(1.55rem, 6vw, 2rem);
+      color: #825a9b;
+    }
+    .section-sub {
+      text-align: center;
+      margin: 0 auto 20px;
+      max-width: 480px;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+    .panel { padding: 22px; margin-top: 18px; }
+    .envelope-area { display: grid; place-items: center; padding: 10px 0 4px; }
+    .envelope-button {
+      display: block;
+      width: min(100%, 360px);
+      border: 0;
+      background: transparent;
+      padding: 10px 8px;
+      color: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .envelope {
+      width: min(100%, 300px);
+      height: 190px;
+      margin: 0 auto;
+      position: relative;
+      filter: drop-shadow(0 12px 12px rgba(132,78,136,.15));
+      transition: transform .25s ease;
+    }
+    .envelope-button:hover .envelope { transform: translateY(-4px) rotate(-1deg); }
+    .env-back {
+      position: absolute; inset: 0;
+      background: #f7b9db;
+      border-radius: 12px;
+    }
+    .env-paper {
+      position: absolute;
+      width: 82%; height: 82%;
+      left: 9%; bottom: 8%;
+      border-radius: 8px;
+      background: #fffafd;
+      display: grid; place-items: start center;
+      padding-top: 19px;
+      font-size: 1.8rem;
+      transition: transform .7s ease;
+    }
+    .env-front {
+      position: absolute; inset: 0;
+      background: #f5a8d0;
+      clip-path: polygon(0 100%, 0 0, 50% 58%, 100% 0, 100% 100%);
+      border-radius: 0 0 12px 12px;
+    }
+    .env-flap {
+      position: absolute; inset: 0;
+      background: #f9c7e4;
+      clip-path: polygon(0 0, 100% 0, 50% 63%);
+      transform-origin: top;
+      transition: transform .65s ease, opacity .3s ease;
+      border-radius: 12px 12px 0 0;
+      z-index: 3;
+    }
+    .env-seal {
+      position: absolute;
+      left: 50%; top: 54%;
+      transform: translate(-50%, -50%);
+      width: 43px; height: 43px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      color: white; background: #df79b5;
+      font-size: 1.2rem; z-index: 4;
+      box-shadow: 0 3px 8px #b86b9b55;
+      transition: opacity .3s ease;
+    }
+    .envelope.open .env-flap { transform: rotateX(180deg); opacity: .35; }
+    .envelope.open .env-paper { transform: translateY(-72px); }
+    .envelope.open .env-seal { opacity: 0; }
+    .tap-note { color: #9b7ca5; font-size: .83rem; margin: 8px 0 0; }
+    .letter {
+      display: none;
+      margin: 18px auto 0;
+      max-width: 560px;
+      padding: 22px 20px;
+      border-radius: 20px;
+      border: 1px solid #f3d4e9;
+      background: rgba(255,250,255,.93);
+      text-align: left;
+      line-height: 1.9;
+      animation: reveal .7s ease both;
+    }
+    .letter.show { display: block; }
+    .letter h3 { margin: 0 0 14px; text-align: center; font-family: Georgia, serif; color: #a35f91; font-size: 1.35rem; }
+    .signature { text-align: right; color: #a35f91; font-weight: 700; margin-top: 18px; }
+    .quiz-card {
+      border-radius: 22px;
+      padding: 22px 18px;
+      background: linear-gradient(140deg, #fff8fd, #f6f0ff);
+      border: 1px solid #f0d9f0;
+      text-align: center;
+    }
+    .quiz-count { font-size: .75rem; letter-spacing: .12em; color: #a17eac; text-transform: uppercase; }
+    .quiz-question { font-size: 1.13rem; line-height: 1.6; font-weight: 700; margin: 12px auto 18px; max-width: 500px; }
+    .answers { display: grid; gap: 10px; }
+    .answer {
+      width: 100%; border: 1px solid #e9d4ef; border-radius: 15px;
+      background: white; color: #72547d; padding: 12px 14px;
+      cursor: pointer; transition: transform .15s, background .15s, border-color .15s;
+      text-align: left;
+    }
+    .answer:hover { transform: translateY(-2px); border-color: #dca4d0; background: #fff7fc; }
+    .answer:focus-visible, button:focus-visible { outline: 3px solid #aa8be4; outline-offset: 3px; }
+    .quiz-feedback { min-height: 52px; margin: 15px 0 0; color: #9a6193; line-height: 1.65; }
+    .primary, .soft {
+      border: 0; border-radius: 999px; padding: 13px 19px; font-weight: 700;
+      cursor: pointer; transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .primary { background: linear-gradient(100deg, #e989bd, #b89bea); color: white; box-shadow: 0 7px 17px #c18dc544; }
+    .soft { background: #fff5fc; color: #a35f91; border: 1px solid #f1cde5; }
+    .primary:hover, .soft:hover { transform: translateY(-2px); }
+    .center { text-align: center; }
+    .final-note { text-align: center; line-height: 1.9; color: var(--muted); }
+    .final-note strong { color: #a35f91; }
+    .footer { text-align: center; font-size: .78rem; color: #a18aa9; padding: 25px 10px 0; line-height: 1.7; }
+    .floating {
+      position: fixed; z-index: 0; top: -35px; pointer-events: none;
+      animation: fall linear forwards; opacity: .85; user-select: none;
+    }
+    .burst {
+      position: fixed; z-index: 10; pointer-events: none; animation: burst 1.4s ease-out forwards;
+    }
+    @keyframes floaty { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-9px) rotate(3deg); } }
+    @keyframes twinkle { 0%,100% { opacity: .35; transform: scale(.8) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(20deg); } }
+    @keyframes fall { to { transform: translate3d(var(--drift), 110vh, 0) rotate(360deg); opacity: .1; } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes burst { 0% { transform: translate(0,0) scale(.5); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(1.3) rotate(35deg); opacity: 0; } }
+    @media (min-width: 620px) {
+      .page { padding-top: 42px; }
+      .hero { padding: 42px 38px 34px; }
+      .panel { padding: 30px; }
+      .answers { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topline">a tiny website made with love ✧</div>
+
+    <section class="hero">
+      <span class="eyebrow">🌸 a little note for my favorite person 🌸</span>
+      <div class="mascot" aria-hidden="true">🐰💗</div>
+      <h1>To My <span>Nana</span></h1>
+      <p class="japanese">ななちゃんへ — Nana-chan e</p>
+      <p>
+        Hai, My Nanaaa~! 🌷<br>
+        Website kecil ini punya satu misi penting:
+        bikin kamu senyum, walau cuma sebentar.
+      </p>
+      <p>
+        Aku tahu kamu punya banyak hal yang sedang kamu kejar.
+        Jadi, santai aja bacanya. Nggak ada tugas, nggak ada deadline…
+        kecuali deadline buat senyum dikit. WKWKWK 😤
+      </p>
+      <button class="primary" id="startButton">Mulai petualangan kecil 💌</button>
+    </section>
+
+    <section id="letterSection">
+      <h2 class="section-title">Ada surat buat kamu</h2>
+      <p class="section-sub">Katanya surat cinta harus pakai perangko. Tapi karena ini versi digital, cukup pakai satu ketukan. 🤏</p>
+      <div class="panel">
+        <div class="envelope-area">
+          <button class="envelope-button" id="envelopeButton" aria-label="Buka amplop surat" aria-expanded="false">
+            <div class="envelope" id="envelope">
+              <div class="env-back"></div>
+              <div class="env-paper">💌</div>
+              <div class="env-flap"></div>
+              <div class="env-front"></div>
+              <div class="env-seal">♥</div>
+            </div>
+            <div class="tap-note" id="tapNote">Ketuk amplopnya untuk membuka surat ✨</div>
+          </button>
+        </div>
+
+        <article class="letter" id="letter" aria-live="polite">
+          <h3>Untuk Nana, orang manis yang suka sibuk 🌷</h3>
+          Hai, Nana sayang.<br><br>
+          Kalau hari-harimu lagi penuh sama belajar, mimpi, dan hal-hal yang harus kamu selesaikan, aku harap kamu tetap ingat buat jaga diri sendiri, ya. Jangan sampai terlalu sibuk sampai lupa makan, istirahat, atau sekadar menikmati hari. 🌻<br><br>
+          Aku nggak mau jadi alasan kamu merasa terburu-buru. Aku ingin jadi salah satu tempat nyaman yang bisa kamu datangi ketika kamu punya waktu, bukan tambahan beban di tengah kesibukanmu.<br><br>
+          Dan kalau suatu hari kamu capek, ingat ya: kamu nggak harus selalu kuat dan ceria. Kamu boleh istirahat. Kamu boleh cerita. Kamu juga boleh diam sebentar. Aku tetap menghargai kamu, termasuk di hari-hari ketika kamu nggak punya banyak kata untuk dibagikan.<br><br>
+          Jujur, aku senang bisa mengenal kamu. Ada hal sederhana dari kamu yang bisa bikin hariku terasa lebih hangat. Bahkan notifikasi kecil darimu kadang bisa bikin aku senyum sendiri kayak orang yang baru menang undian. WKWKWK. 🤡💗<br><br>
+          Aku nggak bisa janji bakal selalu sempurna. Tapi aku ingin belajar menyayangimu dengan cara yang baik: mendukung mimpimu, menghormati waktumu, mendengarkanmu, dan tetap menjadi diriku sendiri sambil memberi ruang buat kamu menjadi dirimu sendiri juga.<br><br>
+          Jadi, semangat ya, Nana. Pelan-pelan aja mengejar semua yang kamu impikan. Aku ikut senang melihatmu tumbuh dan berusaha. Dan kalau hari ini terasa berat, semoga kamu menemukan satu alasan kecil untuk tersenyum.<br><br>
+          <strong>Terima kasih sudah hadir dan menjadi Nana yang aku kenal.</strong><br>
+          Kamu nggak perlu melakukan sesuatu yang luar biasa untuk membuatmu berharga. Menjadi dirimu sendiri pun sudah berarti. 🌸
+          <div class="signature">Dengan sayang,<br>My Beb 💗</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="quizSection">
+      <h2 class="section-title">Ujian kegombalan 🤓</h2>
+      <p class="section-sub">Tenang, Nana. Ini satu-satunya ujian yang nilainya berdasarkan seberapa gemas kamu dibuatnya. Tidak masuk rapor LPK, kok. WKWK.</p>
+      <div class="panel">
+        <div class="quiz-card">
+          <div class="quiz-count" id="quizCount">Pertanyaan 1 dari 3</div>
+          <div class="quiz-question" id="quizQuestion">Kenapa aku suka langit malam?</div>
+          <div class="answers" id="answers">
+            <button class="answer" data-answer="0">Karena banyak bintang</button>
+            <button class="answer" data-answer="1">Karena pengin cari rumah alien</button>
+            <button class="answer" data-answer="2">Karena pengin ingat kamu, yang jauh pun tetap terasa dekat</button>
+            <button class="answer" data-answer="3">Karena waktunya tidur</button>
+          </div>
+          <p class="quiz-feedback" id="quizFeedback" aria-live="polite">Pilih jawabanmu, nona cantik~ 🌙</p>
+          <button class="soft" id="nextQuestion" hidden>Pertanyaan berikutnya ➜</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Satu hal sebelum kamu pergi 🌙</h2>
+      <div class="panel final-note">
+        <p>
+          Nana, kalau kamu sudah selesai membaca ini, jangan lupa kembali ke duniamu dan melakukan hal-hal yang penting buatmu, ya.
+          Aku cuma mampir sebentar lewat website kecil ini untuk menitipkan rasa sayang.
+        </p>
+        <p>
+          <strong>Nggak harus membalas apa-apa sekarang.</strong><br>
+          Kalau kamu tersenyum sedikit saja, misi My Beb sudah berhasil. 🫶
+        </p>
+        <p>
+          Semoga langkahmu dimudahkan, hatimu dikuatkan, dan mimpimu satu per satu menemukan jalannya.
+          Sampai ketemu di cerita-cerita kecil berikutnya, Nana.
+        </p>
+        <p style="font-size:1.5rem; margin-bottom:8px">だいすきだよ 🌸</p>
+        <p style="font-size:.85rem; margin-top:0"><i>Daisuki da yo — Aku sayang banget sama kamu.</i></p>
+        <button class="primary" id="hugButton">Kirim peluk virtual 🫂</button>
+        <p id="hugMessage" hidden>Peluk jauuuh buat Nanaaa! 🫂💗 Semoga hari ini ada hal kecil yang bikin kamu bahagia.</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      dibuat pelan-pelan, dengan sedikit HTML dan banyak rasa sayang ✧<br>
+      <span>— My Beb, khusus untuk Nana 🌸</span>
+    </div>
+  </main>
+
+  <script>
+    // Animasi sakura dan hati; jumlah dibatasi agar tetap ringan di HP.
+    const petals = ["🌸", "🌷", "💗", "✿", "✨"];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function makePetal() {
+      if (reducedMotion || document.hidden) return;
+      const item = document.createElement("span");
+      item.className = "floating";
+      item.textContent = petals[Math.floor(Math.random() * petals.length)];
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.fontSize = (14 + Math.random() * 16) + "px";
+      item.style.setProperty("--drift", (Math.random() * 140 - 70) + "px");
+      item.style.animationDuration = (7 + Math.random() * 7) + "s";
+      document.body.appendChild(item);
+      setTimeout(() => item.remove(), 14500);
+    }
+    if (!reducedMotion) setInterval(makePetal, 850);
+
+    function burstHearts(amount = 18) {
+      if (reducedMotion) return;
+      const icons = ["💗", "💖", "🌸", "✨", "💕"];
+      for (let i = 0; i < amount; i++) {
+        const el = document.createElement("span");
+        el.className = "burst";
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = (35 + Math.random() * 30) + "vw";
+        el.style.top = (42 + Math.random() * 20) + "vh";
+        el.style.setProperty("--x", (Math.random() * 260 - 130) + "px");
+        el.style.setProperty("--y", (-70 - Math.random() * 180) + "px");
+        el.style.fontSize = (15 + Math.random() * 18) + "px";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1500);
+      }
+    }
+
+    document.getElementById("startButton").addEventListener("click", () => {
+      document.getElementById("letterSection").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      burstHearts(10);
+    });
+
+    let letterOpen = false;
+    document.getElementById("envelopeButton").addEventListener("click", () => {
+      letterOpen = !letterOpen;
+      document.getElementById("envelope").classList.toggle("open", letterOpen);
+      document.getElementById("letter").classList.toggle("show", letterOpen);
+      document.getElementById("envelopeButton").setAttribute("aria-expanded", String(letterOpen));
+      document.getElementById("tapNote").textContent = letterOpen
+        ? "Suratnya sudah terbuka. Baca pelan-pelan ya, Nana 💗"
+        : "Ketuk amplopnya untuk membuka surat ✨";
+      if (letterOpen) {
+        burstHearts(16);
+        setTimeout(() => document.getElementById("letter").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest" }), 150);
+      }
+    });
+
+    const quiz = [
+      {
+        q: "Kenapa aku suka langit malam?",
+        a: [
+          "Karena banyak bintang",
+          "Karena pengin cari rumah alien",
+          "Karena pengin ingat kamu, yang jauh pun tetap terasa dekat",
+          "Karena waktunya tidur"
+        ],
+        correct: 2,
+        feedback: "Nah, betul kalau pilih itu! 🌙 Tapi kalau kamu pilih alien pun, tetap aku kasih nilai karena berani. WKWKWK."
+      },
+      {
+        q: "Apa bedanya Nana sama notifikasi HP?",
+        a: [
+          "Notifikasi bisa di-swipe, Nana jangan di-swipe dari hati 🤭",
+          "Nana lebih berisik",
+          "HP lebih mahal",
+          "Tidak ada, dua-duanya bikin baterai habis"
+        ],
+        correct: 0,
+        feedback: "WKWKWK, gombal tipis-tipis! Tapi serius, kamu bebas punya waktu sendiri. Aku nggak mau jadi notifikasi yang mengganggu. 💗"
+      },
+      {
+        q: "Kalau Nana lagi sibuk, My Beb harus bagaimana?",
+        a: [
+          "Spam chat 99 kali",
+          "Ngambek sampai tahun depan",
+          "Dukung Nana, beri ruang, dan tetap sayang",
+          "Kirim formulir izin tidak sibuk"
+        ],
+        correct: 2,
+        feedback: "Jawaban paling sehat! 🥹 Sayang itu bukan soal selalu tersedia setiap saat, tapi juga soal saling menghormati waktu dan mimpi."
+      }
+    ];
+    let quizIndex = 0;
+    let answered = false;
+    const questionEl = document.getElementById("quizQuestion");
+    const answersEl = document.getElementById("answers");
+    const feedbackEl = document.getElementById("quizFeedback");
+    const countEl = document.getElementById("quizCount");
+    const nextBtn = document.getElementById("nextQuestion");
+
+    function renderQuestion() {
+      const item = quiz[quizIndex];
+      answered = false;
+      countEl.textContent = `Pertanyaan ${quizIndex + 1} dari ${quiz.length}`;
+      questionEl.textContent = item.q;
+      feedbackEl.textContent = "Pilih jawabanmu, nona cantik~ 🌙";
+      nextBtn.hidden = true;
+      nextBtn.textContent = quizIndex === quiz.length - 1 ? "Ulangi kuis 💞" : "Pertanyaan berikutnya ➜";
+      answersEl.innerHTML = "";
+      item.a.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.className = "answer";
+        btn.textContent = answer;
+        btn.addEventListener("click", () => chooseAnswer(index));
+        answersEl.appendChild(btn);
+      });
+    }
+
+    function chooseAnswer(index) {
+      if (answered) return;
+      answered = true;
+      const item = quiz[quizIndex];
+      feedbackEl.textContent = index === item.correct
+        ? item.feedback
+        : "WKWKWK jawabanmu lucu juga 😭💗 Tapi coba pikirkan lagi: yang penting tetap saling dukung, bukan saling menuntut.";
+      Array.from(answersEl.children).forEach((btn, i) => {
+        btn.disabled = true;
+        btn.style.opacity = i === index ? "1" : ".65";
+        if (i === item.correct) btn.style.borderColor = "#d98cc4";
+      });
+      nextBtn.hidden = false;
+      burstHearts(8);
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (quizIndex === quiz.length - 1) {
+        quizIndex = 0;
+      } else {
+        quizIndex++;
+      }
+      renderQuestion();
+    });
+
+    document.getElementById("hugButton").addEventListener("click", () => {
+      const msg = document.getElementById("hugMessage");
+      msg.hidden = false;
+      msg.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest" });
+      burstHearts(24);
+    });
+  </script>
+</body>
+</html>
